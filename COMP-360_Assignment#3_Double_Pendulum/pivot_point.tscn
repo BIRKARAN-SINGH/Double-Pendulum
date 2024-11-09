@@ -1,56 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://m05sredssy8n"]
+[gd_scene load_steps=5 format=3 uid="uid://m05sredssy8n"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_mnfaw"]
-top_radius = 0.2
-bottom_radius = 0.2
+[ext_resource type="Script" path="res://pivot_point.gd" id="1_c6sk7"]
+[ext_resource type="Script" path="res://camera_3d.gd" id="1_e53pn"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_lbcxe"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_uyahu"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_w25a3"]
-top_radius = 0.2
-bottom_radius = 0.2
+[sub_resource type="CylinderMesh" id="CylinderMesh_bjq33"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_eld0y"]
+[node name="Main" type="Node3D"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_5yedu"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.701904, 0.544817, 0.458809, -0.645966, -0.215511, -0.732314, -0.300099, -0.810389, 0.503201, 0, 0, 0)
 
-[node name="PivotPoint" type="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.344626, 0)
+[node name="Camera3D" type="Camera3D" parent="DirectionalLight3D"]
+transform = Transform3D(-0.701904, -0.645966, -0.300099, 0.544817, -0.215511, -0.810389, 0.458809, -0.732314, 0.503201, -194.629, 121.282, 79.2483)
+script = ExtResource("1_e53pn")
 
-[node name="FirstArm" type="RigidBody3D" parent="."]
+[node name="PivotPoint" type="Node3D" parent="."]
+script = ExtResource("1_c6sk7")
 
-[node name="Pendulum" type="MeshInstance3D" parent="FirstArm"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.732382, 0.842414, -0.211408)
-mesh = SubResource("CylinderMesh_mnfaw")
+[node name="FirstArm" type="Node3D" parent="PivotPoint"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="FirstArm"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.746113, 3.03786, 0)
-shape = SubResource("CylinderShape3D_lbcxe")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PivotPoint/FirstArm"]
+mesh = SubResource("CylinderMesh_uyahu")
 
-[node name="HingeJoint3D" type="HingeJoint3D" parent="FirstArm"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.74253, 3.75797, -0.193651)
-node_a = NodePath("../..")
-node_b = NodePath("..")
-motor/enable = true
+[node name="SecondArm" type="Node3D" parent="PivotPoint/FirstArm"]
 
-[node name="SecondArm" type="RigidBody3D" parent="FirstArm"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="FirstArm/SecondArm"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.732424, 2.76247, -0.211049)
-mesh = SubResource("CylinderMesh_w25a3")
-
-[node name="HingeJoint3D" type="HingeJoint3D" parent="FirstArm/SecondArm"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.817113, 2.13274, -0.259905)
-node_a = NodePath("../..")
-node_b = NodePath("..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="FirstArm/SecondArm"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.655402, 1.44316, 0)
-shape = SubResource("CylinderShape3D_eld0y")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_5yedu")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, -0.706949, 4.21535, 4.92559)
-fov = 112.5
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PivotPoint/FirstArm/SecondArm"]
+mesh = SubResource("CylinderMesh_bjq33")
