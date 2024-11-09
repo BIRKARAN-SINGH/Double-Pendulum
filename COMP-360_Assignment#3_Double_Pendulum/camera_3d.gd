@@ -1,5 +1,10 @@
 extends Camera3D
 
 func _process(delta):
-	var target = get_node("../PivotPoint/FirstArm/SecondArm").global_transform.origin
-	look_at(target, Vector3.UP)  # Keep the camera looking at the end of the second arm
+	# Target position to focus the camera on (e.g., end of SecondArm)
+	var target_position = get_node("../../PivotPoint/FirstArm/SecondArm").global_transform.origin
+
+	# Make the camera look at the target position
+	look_at(target_position, Vector3.UP)
+
+	# Optional: Adjust camera position or zoom dynamically if desired
