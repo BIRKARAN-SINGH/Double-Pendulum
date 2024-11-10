@@ -1,8 +1,9 @@
-Double Pendulum Simulation in Godot
-Introduction
+**Double Pendulum Simulation in Godot**
+
+**Introduction**
 This project involves creating a 3D simulation of a double pendulum system using the Godot engine. The simulation aims to demonstrate the dynamic and programmatic movements of a double pendulum modeled in a 3D space, utilizing real-time physics updates.
 
-Project Objective
+**Project Objective**
 To develop a realistic simulation of a double pendulum with hierarchical object modeling.
 Implement the _physics_process method to ensure smooth updates at 60 frames per second.
 Utilize basic physics principles to model the pendulum's motion realistically.
@@ -10,11 +11,45 @@ Development Process
 Scene Configuration
 The main scene is set up with hierarchical structures that include pendulum arms and a supportive environment. The script is attached to the main node to manage physics calculations and animations.
 
-Scripting
+Video Demonstration: https://drive.google.com/file/d/1pUSSBSiDNIOKm8eNce4lcPGjL_GXeJSn/view 
+
+**Table of Contents**
+1. Project Setup
+2. Running the Simulation
+3. Scripting
+4. Testing and Calibration 
+5. Contributions
+
+
+**Project Setup** 
+*Prerequisites*
+Godot Engine (version 3.x or later)
+Git (optional for version control)
+
+*Cloning the Repository*
+To set up the project locally:
+
+1.Clone the repository:
+git clone https://github.com/BIRKARAN-SINGH/Double-Pendulum.git
+
+2. Open the project in Godot:
+-Launch Godot Engine.
+-Open the cloned folder as a project.
+
+3.Installing Dependencies
+No external dependencies are required for this project.
+
+*Running the Simulation*
+1. Open the main.tscn scene in Godot.
+2. Press the play button (F5) to run the simulation.
+3. The simulation will show the two pendulum arms swinging in a 3D space.
+
+*Controls*
+Use the mouse to adjust the camera view and observe the motion of the pendulum.
+
+**Scripting**
 A single script is attached to the main node, which encapsulates all the logic required for the simulation:
 
-gdscript
-Copy code
 extends Node3D
 
 # Physical and kinematic properties of the double pendulum
@@ -85,7 +120,6 @@ This project not only provides an understanding of 3D animation and simulation b
 
 Contributions
 Birkaran Singh: Led the development and implementation of the simulation, focusing on the physics calculations and system dynamics.
-Fuzail Chaugle: Contributed to enhancing visual aspects and camera dynamics to improve the overall aesthetic and functionality of the simulation.
-Additional Resources
+Fuzail Chaugle: Led the documentation aspect of the project, Contributed to enhancing visual aspects and camera dynamics to improve the overall aesthetic and functionality of the simulation.
 
-Video Demonstration: https://drive.google.com/file/d/1pUSSBSiDNIOKm8eNce4lcPGjL_GXeJSn/view 
+
