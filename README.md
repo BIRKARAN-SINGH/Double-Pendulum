@@ -29,7 +29,7 @@ Godot Engine 4.x: Install from Godot's official website.
 To set up the project locally:
 
 1.Clone the repository:
-git clone https://github.com/BIRKARAN-SINGH/Double-Pendulum.git
+git clone https://github.com/yourusername/double-pendulum-godot.git
 
 2. Open the project in Godot:
 -Launch Godot Engine.
