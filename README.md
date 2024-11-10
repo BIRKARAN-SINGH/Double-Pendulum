@@ -23,8 +23,7 @@ Video Demonstration: https://drive.google.com/file/d/1pUSSBSiDNIOKm8eNce4lcPGjL_
 
 **Project Setup** 
 *Prerequisites*
-Godot Engine (version 3.x or later)
-Git (optional for version control)
+Godot Engine 4.x: Install from Godot's official website.
 
 *Cloning the Repository*
 To set up the project locally:
