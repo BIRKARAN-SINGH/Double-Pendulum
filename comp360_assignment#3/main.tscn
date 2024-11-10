@@ -1,32 +1,33 @@
 [gd_scene load_steps=7 format=3 uid="uid://bkdpjwrx6uwp8"]
 
-[ext_resource type="Script" path="res://Main.gd" id="1_eepyr"]
+[ext_resource type="Script" path="res://main.gd" id="1_kntlj"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_x65x5"]
 size = Vector3(2, 0.1, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_xbl03"]
-top_radius = 0.01
-bottom_radius = 0.01
-height = 1.0
+top_radius = 0.1
+bottom_radius = 0.1
+height = 3.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_261ix"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_2gods"]
-top_radius = 0.01
-bottom_radius = 0.01
-height = 1.0
+top_radius = 0.1
+bottom_radius = 0.1
+height = 3.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_3l4cs"]
 
 [node name="Main" type="Node3D"]
-script = ExtResource("1_eepyr")
+script = ExtResource("1_kntlj")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0223134, 0.127911, 1.40373)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0223134, -0.485702, 1.63598)
+fov = 110.329
 
 [node name="TOP" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03373, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03373, -0.624146)
 mesh = SubResource("BoxMesh_x65x5")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -35,19 +36,23 @@ mesh = SubResource("BoxMesh_x65x5")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0223134, 0.127911, 1.11244)
 
 [node name="ARM" type="MeshInstance3D" parent="FirstARM"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.463152, -1.16404)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.268344, -1.16404)
 mesh = SubResource("CylinderMesh_xbl03")
 
-[node name="BALL" type="MeshInstance3D" parent="FirstARM"]
-transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0.00804369, -0.0129644, -1.164)
+[node name="BALL" type="MeshInstance3D" parent="FirstARM/ARM"]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0.00804369, -0.476116, 3.99351e-05)
+visible = false
 mesh = SubResource("SphereMesh_261ix")
+skeleton = NodePath("../..")
 
 [node name="SecondARM" type="Node3D" parent="FirstARM"]
 
 [node name="ARM" type="MeshInstance3D" parent="FirstARM/SecondARM"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000551453, -0.5, -1.164)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000551453, -0.479439, -1.164)
 mesh = SubResource("CylinderMesh_2gods")
 
-[node name="BALL" type="MeshInstance3D" parent="FirstARM/SecondARM"]
-transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0, -0.953359, -1.164)
+[node name="BALL" type="MeshInstance3D" parent="FirstARM/SecondARM/ARM"]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0.000551453, -0.453359, 0)
+visible = false
 mesh = SubResource("SphereMesh_3l4cs")
+skeleton = NodePath("../..")
