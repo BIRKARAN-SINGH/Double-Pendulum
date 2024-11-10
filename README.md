@@ -87,4 +87,5 @@ Contributions
 Birkaran Singh: Led the development and implementation of the simulation, focusing on the physics calculations and system dynamics.
 Fuzail Chaugle: Contributed to enhancing visual aspects and camera dynamics to improve the overall aesthetic and functionality of the simulation.
 Additional Resources
-Video Demonstration: View Simulation
+
+Video Demonstration: https://drive.google.com/file/d/1pUSSBSiDNIOKm8eNce4lcPGjL_GXeJSn/view 
