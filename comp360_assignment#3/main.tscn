@@ -1,58 +1,78 @@
-[gd_scene load_steps=7 format=3 uid="uid://bkdpjwrx6uwp8"]
+[gd_scene load_steps=11 format=3 uid="uid://bkdpjwrx6uwp8"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_kntlj"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_x65x5"]
-size = Vector3(2, 0.1, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1gucv"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_xbl03"]
-top_radius = 0.1
-bottom_radius = 0.1
-height = 3.0
+[sub_resource type="Sky" id="Sky_2isqp"]
+sky_material = SubResource("ProceduralSkyMaterial_1gucv")
 
-[sub_resource type="SphereMesh" id="SphereMesh_261ix"]
+[sub_resource type="Environment" id="Environment_odku5"]
+background_mode = 2
+sky = SubResource("Sky_2isqp")
+tonemap_mode = 2
+glow_enabled = true
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_2gods"]
-top_radius = 0.1
-bottom_radius = 0.1
-height = 3.0
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qj6oe"]
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(0.472926, 0.243713, 0.403054, 1)
 
-[sub_resource type="SphereMesh" id="SphereMesh_3l4cs"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_4pi5j"]
+material = SubResource("StandardMaterial3D_qj6oe")
+size = Vector2(25, 25)
 
-[node name="Main" type="Node3D"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6bk1b"]
+radius = 0.02
+height = 0.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_ck7l4"]
+radius = 0.05
+height = 0.1
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_bbf73"]
+radius = 0.02
+height = 0.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_f4v26"]
+radius = 0.05
+height = 0.1
+
+[node name="RootNode" type="Node3D"]
 script = ExtResource("1_kntlj")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0223134, -0.485702, 1.63598)
-fov = 110.329
+transform = Transform3D(1, 0, 0, 0, 0.999007, -0.044561, 0, 0.044561, 0.999007, 0, -0.117548, 2.35236)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_odku5")
 
 [node name="TOP" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03373, -0.624146)
-mesh = SubResource("BoxMesh_x65x5")
+transform = Transform3D(1, 0, 0, 0, -0.999567, -0.0294394, 0, 0.0294394, -0.999567, 0, 0.879857, -0.624146)
+mesh = SubResource("PlaneMesh_4pi5j")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.997422, -0.0717586, 0, 0.0717586, 0.997422, 0.26362, 0.394249, 4.5445)
 
-[node name="FirstARM" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0223134, 0.127911, 1.11244)
+[node name="Pivot1" type="SpringArm3D" parent="."]
 
-[node name="ARM" type="MeshInstance3D" parent="FirstARM"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.268344, -1.16404)
-mesh = SubResource("CylinderMesh_xbl03")
+[node name="Arm1" type="MeshInstance3D" parent="Pivot1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5209, 0)
+mesh = SubResource("CapsuleMesh_6bk1b")
 
-[node name="BALL" type="MeshInstance3D" parent="FirstARM/ARM"]
-transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0.00804369, -0.476116, 3.99351e-05)
-visible = false
-mesh = SubResource("SphereMesh_261ix")
+[node name="Bob1" type="MeshInstance3D" parent="Pivot1/Arm1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.260134, 0)
+mesh = SubResource("SphereMesh_ck7l4")
 skeleton = NodePath("../..")
 
-[node name="SecondARM" type="Node3D" parent="FirstARM"]
+[node name="Pivot2" type="Node3D" parent="Pivot1/Arm1"]
 
-[node name="ARM" type="MeshInstance3D" parent="FirstARM/SecondARM"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000551453, -0.479439, -1.164)
-mesh = SubResource("CylinderMesh_2gods")
+[node name="Arm2" type="MeshInstance3D" parent="Pivot1/Arm1/Pivot2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.272524, 0)
+mesh = SubResource("CapsuleMesh_bbf73")
 
-[node name="BALL" type="MeshInstance3D" parent="FirstARM/SecondARM/ARM"]
-transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0.000551453, -0.453359, 0)
-visible = false
-mesh = SubResource("SphereMesh_3l4cs")
-skeleton = NodePath("../..")
+[node name="Bob2" type="MeshInstance3D" parent="Pivot1/Arm1/Pivot2/Arm2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.255005, 0)
+mesh = SubResource("SphereMesh_f4v26")
