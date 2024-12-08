@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://bkdpjwrx6uwp8"]
+[gd_scene load_steps=17 format=3 uid="uid://bkdpjwrx6uwp8"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_kntlj"]
+[ext_resource type="Script" path="res://pivot_1.gd" id="2_02axh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1gucv"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -24,19 +25,40 @@ albedo_color = Color(0.472926, 0.243713, 0.403054, 1)
 material = SubResource("StandardMaterial3D_qj6oe")
 size = Vector2(25, 25)
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_hllhg"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_s3acg"]
+vertex_color_is_srgb = true
+albedo_color = Color(0.6, 0.2, 0.2, 1)
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6bk1b"]
+material = SubResource("ORMMaterial3D_s3acg")
 radius = 0.02
 height = 0.5
 
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_casbs"]
+vertex_color_is_srgb = true
+albedo_color = Color(0, 0, 0, 1)
+
 [sub_resource type="SphereMesh" id="SphereMesh_ck7l4"]
+material = SubResource("ORMMaterial3D_casbs")
 radius = 0.05
 height = 0.1
 
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_nnnam"]
+albedo_color = Color(0.6, 0.2, 0.2, 1)
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_bbf73"]
+material = SubResource("ORMMaterial3D_nnnam")
 radius = 0.02
 height = 0.5
 
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_oyw5n"]
+vertex_color_is_srgb = true
+albedo_color = Color(0, 0, 0, 1)
+
 [sub_resource type="SphereMesh" id="SphereMesh_f4v26"]
+material = SubResource("ORMMaterial3D_oyw5n")
 radius = 0.05
 height = 0.1
 
@@ -54,12 +76,17 @@ transform = Transform3D(1, 0, 0, 0, -0.999567, -0.0294394, 0, 0.0294394, -0.9995
 mesh = SubResource("PlaneMesh_4pi5j")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.997422, -0.0717586, 0, 0.0717586, 0.997422, 0.26362, 0.394249, 4.5445)
+transform = Transform3D(1, 0, 0, 0, 0.911367, -0.411594, 0, 0.411594, 0.911367, 0.26362, -0.471681, 4.5445)
 
 [node name="Pivot1" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.216784, -0.0375869, -0.200877)
+rotation_order = 0
+shape = SubResource("CylinderShape3D_hllhg")
+spring_length = 1.5
+script = ExtResource("2_02axh")
 
 [node name="Arm1" type="MeshInstance3D" parent="Pivot1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5209, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.388328, 0)
 mesh = SubResource("CapsuleMesh_6bk1b")
 
 [node name="Bob1" type="MeshInstance3D" parent="Pivot1/Arm1"]
@@ -68,6 +95,7 @@ mesh = SubResource("SphereMesh_ck7l4")
 skeleton = NodePath("../..")
 
 [node name="Pivot2" type="Node3D" parent="Pivot1/Arm1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.125033, 0)
 
 [node name="Arm2" type="MeshInstance3D" parent="Pivot1/Arm1/Pivot2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.272524, 0)
