@@ -11,7 +11,7 @@ Development Process
 Scene Configuration
 The main scene is set up with hierarchical structures that include pendulum arms and a supportive environment. The script is attached to the main node to manage physics calculations and animations.
 
-Video Demonstration: https://drive.google.com/file/d/1pUSSBSiDNIOKm8eNce4lcPGjL_GXeJSn/view 
+Video Demonstration: https://drive.google.com/file/d/1C93f2MUIuu2sUmEy_9dHbOY1USNV7vUf/view?usp=sharing
 
 **Table of Contents**
 1. Project Setup
