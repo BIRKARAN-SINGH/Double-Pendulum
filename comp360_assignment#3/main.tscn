@@ -1,14 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://bkdpjwrx6uwp8"]
+[gd_scene load_steps=18 format=3 uid="uid://bkdpjwrx6uwp8"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_kntlj"]
 [ext_resource type="Script" path="res://pivot_1.gd" id="2_02axh"]
+[ext_resource type="Texture2D" uid="uid://cack01s0kcw3l" path="res://kloofendal_43d_clear_puresky_2k.exr" id="2_p4ni8"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1gucv"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_iqio2"]
+panorama = ExtResource("2_p4ni8")
 
 [sub_resource type="Sky" id="Sky_2isqp"]
-sky_material = SubResource("ProceduralSkyMaterial_1gucv")
+sky_material = SubResource("PanoramaSkyMaterial_iqio2")
 
 [sub_resource type="Environment" id="Environment_odku5"]
 background_mode = 2
@@ -73,6 +73,7 @@ environment = SubResource("Environment_odku5")
 
 [node name="TOP" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.999567, -0.0294394, 0, 0.0294394, -0.999567, 0, 0.879857, -0.624146)
+visible = false
 mesh = SubResource("PlaneMesh_4pi5j")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -104,3 +105,15 @@ mesh = SubResource("CapsuleMesh_bbf73")
 [node name="Bob2" type="MeshInstance3D" parent="Pivot1/Arm1/Pivot2/Arm2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.255005, 0)
 mesh = SubResource("SphereMesh_f4v26")
+
+[node name="Note" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="Note"]
+offset_left = 27.0
+offset_top = 17.0
+offset_right = 273.0
+offset_bottom = 118.0
+text = "Press \"K\" to pause and unpause
+use arrow keys to increase and 
+decrease the speed of double 
+pendulum"
